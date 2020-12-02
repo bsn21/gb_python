@@ -3,9 +3,7 @@
 # Использовать функцию type() для проверки типа.
 # Элементы списка можно не запрашивать у пользователя, а указать явно, в программе.
 
-my_list = [10, 'name', 75.2, None, 0, {'age': 25}, (25, 'car', True), [1, 2, 3], {'apple', 'banana', 'orange'}]
+my_list = [10, 0, 75.2, (-2 + 2j), 'string', None, True, {}, {'age': 25, 'city': 'Moscow'}, [], [1, 2, 3], (), (25, 'car'), {'apple', 'banana', 'orange'}, frozenset(), TypeError, range(6), (b'seven'), bytearray(b'eight'), zip(*[(9, 10,), (11, 12), ('a', 'b')])]
 
-print(type(my_list))
-
-for element in my_list:
-    print(type(element))
+for i, item in enumerate(my_list, 1):
+    print(f'{i}) {item} - {type(item)}')

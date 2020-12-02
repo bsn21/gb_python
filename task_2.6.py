@@ -22,27 +22,48 @@
 # “ед”: [“шт.”]
 # }
 
-n = int(input('Введите количество товаров: '))
-i = 0
-good = ()
-goods = []
-
-while n > 0:
-    param_good = dict(название=input('Введите название: '), цена=int(input('Введите цену: ')), количество=int(input('Введите количество: ')), ед=input('Введите единицу измерения: '))
-    n -= 1
-    i += 1
-    good = (i, param_good)
-    goods.append(good)
+# # 1) Вариант с вводом количества товаров и циклом с этим количеством
+# n = int(input('Введите количество товаров: '))
+# i = 0
+# good = ()
+# goods = []
+#
+# while n > 0:
+#     param_good = dict(название=input('Введите название: '), цена=int(input('Введите цену: ')), количество=int(input('Введите количество: ')), ед=input('Введите единицу измерения: '))
+#     n -= 1
+#     i += 1
+#     good = (i, param_good)
+#     goods.append(good)
 # print(goods)
+#
+# goods_analytics = goods[0][1].keys()
+# result_dict = dict()
+#
+# for key in goods_analytics:
+#     tmp_list = []
+#     for item in goods:
+#         tmp_list.append(item[1][key])
+#     result_dict[key] = tmp_list
+#
+# print(result_dict)
 
-goods_analytics = goods[0][1].keys()
-# print(goods_analytics)
-result_dict = dict()
+# 2) Вариант с while и выводом результата в столбик
+goods = []
+features  = {'название': '', 'цена': '', 'количество': '', 'единица измерения': ''}
+analitics = {'название': [], 'цена': [], 'количество': [], 'единица измерения': []}
+n = 0
 
-for key in goods_analytics:
-    tmp_list = []
-    for item in goods:
-        tmp_list.append(item[1][key])
-    result_dict[key] = tmp_list
-
-print(result_dict)
+while True:
+    if input('\nДля ввода характеристик товаров нажмите Enter, для выхода из приложения нажмите Q: ').upper() == 'Q':
+        break
+    n += 1
+    for f in features.keys():
+        property_of_feature = input(f'Введите значение свойства {f} - ')
+        features[f] = int(property_of_feature) if (f == 'цена' or f == 'количество') else property_of_feature
+        analitics[f].append(features[f])
+    goods.append((n, features))
+    print(f'\nСтруктора товаров\n{goods}')
+    print(f'\nТекущая аналитика по товарам:\n{"-" * 29}')
+    for key, value in analitics.items():
+        print(f'{key[:]:>28}: {value}')
+    print("-" * 29)

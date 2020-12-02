@@ -2,8 +2,13 @@
 # Вывести каждое слово с новой строки. Строки необходимо пронумеровать.
 # Если в слово длинное, выводить только первые 10 букв в слове.
 
-new_string = list(input('Введите несколько слов, разделенных пробелами: ').split())
+# 1) Вариант c len
+new_string = input('Введите несколько слов, разделенных пробелами: ').split()
 
-for el in range(len(new_string)):
-    print(el + 1, new_string[el][:10])
+for word in range(len(new_string)):
+    print(word + 1, new_string[word][:10])
 
+# 2) Вариант c enumerate
+new_string = input('Введите несколько слов, разделенных пробелами: ').split()
+for i, word in enumerate(new_string, 1):
+    print(f'{i} {word[:10]}')
